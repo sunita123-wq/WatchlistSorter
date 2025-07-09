@@ -1,0 +1,33 @@
+name: Sort Watchlist
+
+on:
+  schedule:
+    - cron: '*/5 3-18 * * 1-5'  # Every 5 min from 9 AM to 12 AM IST, Mon–Fri
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  sort:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Sorting Script
+        run: python sort_watchlist.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add watchlist.json
+          git commit -m "Auto-sort watchlist.json by change %"
+          git push
