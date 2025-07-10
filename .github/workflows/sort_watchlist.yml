@@ -1,8 +1,8 @@
 name: Sort Watchlist
 
 on:
-  schedule:
-    - cron: '*/5 3-9 * * 1-5'  # Every 5 min from 3 AM to 10 AM UTC (8:30 AM – 2:30 PM IST)
+  #schedule:
+   # - cron: '*/5 3-9 * * 1-5'  # Every 5 min from 3 AM to 10 AM UTC (8:30 AM – 2:30 PM IST)
   workflow_dispatch:
 
 jobs:
